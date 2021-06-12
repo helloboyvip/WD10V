@@ -1,0 +1,284 @@
+name: RD_WINDOW
+
+on: 
+ workflow_dispatch:
+   inputs:
+     authtoken:
+      description : 'NHẬP TOKEN'
+      required: true
+        
+jobs:
+ build:
+  
+  runs-on: windows-latest
+  timeout-minutes: 999999999999999999999999999999
+    
+  steps:
+    - name: TẢI XUỐNG DỮ LIỆU
+      run: |
+           Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-386.zip -OutFile ngrok.zip
+           Invoke-WebRequest https://raw.githubusercontent.com/helloboyvip/WD10V/master/Files/AssetsBundleExtractor_2.2stabled_64bit.zip -OutFile AssetsBundleExtractor_2.2stabled_64bit.zip
+           Invoke-WebRequest https://raw.githubusercontent.com/helloboyvip/WD10V/master/Files/Il2CppDumperGUI1.5.0.zip -OutFile Il2CppDumperGUI1.5.0.zip
+    - name: SAO CHÉP FILE
+      run: |
+           copy AssetsBundleExtractor_2.2stabled_64bit.zip C:\Users\Public\Desktop
+           copy Il2CppDumperGUI1.5.0.zip C:\Users\Public\Desktop
+    - name: GIẢI NÉN ZIP
+      run: |
+           Expand-Archive ngrok.zip
+           Expand-Archive C:\Users\Public\Desktop\AssetsBundleExtractor_2.2stabled_64bit.zip
+           Expand-Archive C:\Users\Public\Desktop\Il2CppDumperGUI1.5.0.zip         
+    - name: XOÁ FILE
+      run: |
+           Remove-Item AssetsBundleExtractor_2.2stabled_64bit.zip
+           Remove-Item Il2CppDumperGUI1.5.0.zip
+           Remove-Item C:\Users\Public\Desktop\Il2CppDumperGUI1.5.0.zip
+           Remove-Item C:\Users\Public\Desktop\AssetsBundleExtractor_2.2stabled_64bit.zip
+    - name: KẾT NỐI ĐẾN TÀI KHOẢN NGROK
+      run:  .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: BẬT RDP
+      run: | 
+           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+           Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+           Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "@#LTN1234" -Force)
+    - name: BẬT KẾT NỐI
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
+      continue-on-error: true
+    - name: KẾT NỐI REMOTE MỚI
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+       NGROK_AUTH_TOKEN: ${{ github.event.inputs.authtoken }}
+    - name: KẾT NỐI THÀNH CÔNG
+      run: |
+              .\ngrok\ngrok.exe tcp 3389
+              Sleep 21540
