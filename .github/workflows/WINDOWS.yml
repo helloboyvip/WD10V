@@ -6,7 +6,7 @@ on:
      authtoken:
       description : 'NHẬP TOKEN'
       required: true
-    authtoken2:
+     authtoken2:
       description : 'NHẬP TOKEN'
       required: true
         
